@@ -7,15 +7,17 @@ const pool = new Pool({
   database: "db"
 })
 
-const addNewVisitor  = (vName,vAge,dateOfVisit,timeOfVisit,assistantName,comments) =>{
-    pool.query( 'INSERT INTO VISITORS( visitor_name, visitors_age, date_of_visit, time_of_visit, assistant_name, comments) VALUES($1,$2,$3,$4,$5,$6) RETURNING *' , 
+const addNewVisitor  = async(vName,vAge,dateOfVisit,timeOfVisit,assistantName,comments) =>{
+  return new Promise(async(resolve, reject)=>{
+    await pool.query( 'INSERT INTO VISITORS( visitor_name, visitors_age, date_of_visit, time_of_visit, assistant_name, comments) VALUES($1,$2,$3,$4,$5,$6) RETURNING *' , 
     [vName,vAge,dateOfVisit,timeOfVisit,assistantName,comments],
     function (err,results) {
 			if (err) {
-				return(err);
-			} 
-			console.log(results.rows);
+				reject(err);
+      } 
+      resolve(results.rows[0].id);
 		});
+  })
 	
 }
 
