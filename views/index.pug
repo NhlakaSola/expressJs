@@ -7,10 +7,26 @@ html(lang="en")
     h1 Thank You !!!
     
     p The follow data has been saved:
-    p #{id}
-    each visitor in visitors
-        p= visitor
-
-     
-
-    
+    table(style='width:20%')
+        thead
+            tr
+                th(colspan="2") ID:
+                td(colspan="2") #{id}
+            tr
+                th(colspan="2") Visitor's Name:
+                td(colspan="2") #{visitorsName}
+            tr
+                th(colspan="2") Name Of Assistant:
+                td(colspan="2") #{nameOfAssistant}
+            tr    
+                th(colspan="2") Age:
+                td(colspan="2") #{age}
+            tr    
+                th(colspan="2") Date Of Visit:
+                td(colspan="2") #{dateOfVisit}
+            tr
+                th(colspan="2") Time Of Visit:
+                td(colspan="2") #{timeOfVisit}
+            tr
+                th(colspan="2") Comments:
+                td(colspan="2") #{comments}

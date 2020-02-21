@@ -23,8 +23,13 @@ app.post('/submit-form', async(req, res) => {
     const timeOfVisit = req.body.timeOfVisit
     const comments = req.body.comments
     const id = await addNewVisitor(fName,age,dateOfVisit,timeOfVisit,nameOfAssistant,comments);
-    res.render("index", { visitors: req.body,
-    id: id
+    res.render("index", { visitorsName: req.body.fName,
+                        nameOfAssistant: req.body.nameOfAssistant,
+                        age: req.body.age,
+                        dateOfVisit: req.body.dateOfVisit,
+                        timeOfVisit: req.body.timeOfVisit,
+                        comments: req.body.comments,
+                        id: id
     });
     res.end()
 })
