@@ -15,14 +15,10 @@ describe('express form testing', ()=>{
     it('should return an html form', async (done)=>{
         try {
             const html = await axios.get("http://127.0.0.1:9005/")
-
             expect(html.data).toEqual(fixture)
-
-
         } catch (err) {
             console.log(err)
         }
-
         done()
     })
 })
