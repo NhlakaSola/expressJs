@@ -1,8 +1,16 @@
 describe('express form testing', ()=>{
     const axios = require('axios');
-    const readline = require('readline');
-    const fixture = require('./fixture')
     let server
+
+    const {addNewVisitor} = require('../src/app')
+    const visitor = {
+          name: 'Nhlakanipho',
+          age: 20,
+          date: new Date('01/08/2000'),
+          time: '08:00:00',
+          assistant: 'Nothile',
+          comments: 'The best'
+    }
 
     beforeEach(()=>{
         server = require('../../src/index')

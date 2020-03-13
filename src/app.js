@@ -1,24 +1,25 @@
+const dotenv = require('dotenv').config();
 const Pool = require("pg").Pool;
-const pool = new Pool({
-  user: "user",
-  host: "localhost",
-  password: "pass",
-  port:5432,
-  database: "db"
-})
+const pool = new Pool();
+
+pool.connect((err,res)=>{
+	if(err){
+		console.log(err)
+	}console.log(res);
+});
 
 const addNewVisitor  = async(vName,vAge,dateOfVisit,timeOfVisit,assistantName,comments) =>{
-  return new Promise(async(resolve, reject)=>{
-    await pool.query( 'INSERT INTO VISITORS( visitor_name, visitors_age, date_of_visit, time_of_visit, assistant_name, comments) VALUES($1,$2,$3,$4,$5,$6) RETURNING *' , 
-    [vName,vAge,dateOfVisit,timeOfVisit,assistantName,comments],
-    function (err,results) {
-			if (err) {
-				reject(err);
-      } 
-      resolve(results.rows[0].id);
+	return new Promise(async(resolve, reject)=>{
+	  await pool.query(`INSERT INTO VISITORS( vName, vAge, dateOfVisit, timeOfVisit, assistantName, comments) VALUES($1,$2,$3,$4,$5,$6) RETURNING *` , 
+	  [vName,vAge,dateOfVisit,timeOfVisit,assistantName,comments],
+	  (err,results)=> {
+		if (err) {
+			reject(err);
+		} 
+		console.log(results.rows[0]);
+		resolve(results[0]);
 		});
-  })
-	
+	})	  
 }
 
-module.exports = {addNewVisitor}
+addNewVisitor("name",12,"12/12/12","12:21","Nhlaka","Nhkkka")

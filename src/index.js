@@ -5,7 +5,6 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
-const visitors = require('./endpoint');
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 app.set('view engine','pug')
